@@ -1,5 +1,7 @@
-export const ArrowIcon = () => (
-  <svg width='54' height='54' viewBox='0 0 54 54'>
+import type { FC, SVGProps } from 'react';
+
+export const ArrowIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
+  <svg width='54' height='54' viewBox='0 0 54 54' {...props}>
     <g>
       <path
         d='M27,0C12.112,0,0,12.112,0,27s12.112,27,27,27s27-12.112,27-27S41.888,0,27,0z M27,52C13.215,52,2,40.785,2,27

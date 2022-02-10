@@ -1,6 +1,6 @@
-import type { FC } from 'react';
+import type { FC, SVGProps } from 'react';
 
-export const ProfileIcon: FC = (props) => (
+export const ProfileIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
     width='45.532px'
     height='45.532px'

@@ -52,7 +52,7 @@ export default function Index() {
         </div>
       </div>
       <Link className='next-btn' to={selectedLayout}>
-        <ArrowIcon />
+        <ArrowIcon className={clsx(selectedLayout ? 'active' : 'in-active')} />
       </Link>
     </div>
   );
@@ -62,7 +62,7 @@ function Card() {
   return (
     <>
       <div className='img-card-placeholder'>
-        <ProfileIcon />
+        <ProfileIcon className='profile-img' />
       </div>
       <div className='field-container'>
         <div className='field'></div>

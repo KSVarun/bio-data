@@ -9,18 +9,20 @@
 .card-container {
   display: flex;
   gap: 5rem;
+  margin-top: 2rem;
 }
 
 .card {
   width: 20rem;
   height: 20rem;
-  border: 1px solid gray;
+  border: 1px solid var(--bd-theme-gray);
   border-radius: var(--border-radius);
   padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .right-pic-card {
@@ -33,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid gray;
+  border: 1px solid var(--bd-theme-gray);
 }
 
 .field-container {
@@ -42,11 +44,13 @@
   gap: 1rem;
   height: 80%;
   width: 45%;
+  align-items: center;
+  justify-content: center;
 }
 
 .field {
-  height: 2rem;
-  background: gray;
+  height: 1.25rem;
+  background: var(--bd-theme-gray);
   width: 100%;
   border-radius: 15px;
 }
@@ -59,9 +63,19 @@
 .profile-img {
   width: 100px;
   height: 100px;
+  fill: var(--bd-theme-gray);
 }
 
 .next-btn {
-  margin-top: 5rem;
+  margin-top: 3rem;
   transform: rotate(180deg);
+}
+
+.active {
+  cursor: pointer;
+}
+
+.in-active {
+  cursor: default;
+  fill: var(--bd-theme-gray);
 }
