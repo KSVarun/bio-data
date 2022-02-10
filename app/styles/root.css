@@ -5,4 +5,23 @@ body {
 
 body {
   margin: 0px;
+  font-family: sans-serif;
+}
+
+textarea {
+  font-family: sans-serif;
+  resize: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid gray;
+  outline: none;
 }

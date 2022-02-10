@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
 import { useState } from 'react';
 import type { LinksFunction } from 'remix';
 import { Image } from '~/components/Image';
 import leftPicStyles from '../../styles/left-pic.css';
 import { v4 as uuidv4 } from 'uuid';
+import { ArrowIcon } from '~/assets/ArrowIcon';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: leftPicStyles }];
@@ -48,27 +48,63 @@ export default function LeftPic() {
     setData(updatedData);
   }
 
+  function handleAddNewField() {
+    setData((data) => [
+      ...data,
+      {
+        id: uuidv4(),
+        label: '',
+        value: '',
+      },
+    ]);
+  }
+
+  function handleRemoveField(id: string) {
+    setData((data) => data.filter((d) => d.id !== id));
+  }
+
   return (
     <div className='container'>
-      <div className='img-container'>
-        <Image file={file} handleFileSelect={handleFileSelect} />
+      <div className='top-container'>
+        <div className='img-container'>
+          <Image file={file} handleFileSelect={handleFileSelect} />
+        </div>
+        <div className='editable-field-container'>
+          {data.map((d) => (
+            <div className='editable-field' key={d.id}>
+              <div className='left-container'>
+                <input
+                  type='text'
+                  value={d.label}
+                  onChange={(e) =>
+                    handleUpdateData(d.id, e.target.value, d.value)
+                  }
+                />
+                <span className='separator'>:</span>
+                <textarea
+                  value={d.value}
+                  onChange={(e) =>
+                    handleUpdateData(d.id, d.label, e.target.value)
+                  }
+                  rows={1}
+                />
+              </div>
+              <div
+                className='right-container'
+                onClick={() => handleRemoveField(d.id)}
+              >
+                x
+              </div>
+            </div>
+          ))}
+          <button className='add-new-btn' onClick={handleAddNewField}>
+            ADD NEW
+          </button>
+        </div>
       </div>
-      <div className='editable-field-container'>
-        {data.map((d) => (
-          <div className='editable-field' key={d.id}>
-            <input
-              type='text'
-              value={d.label}
-              onChange={(e) => handleUpdateData(d.id, e.target.value, d.value)}
-            />
-            <textarea
-              value={d.value}
-              onChange={(e) => handleUpdateData(d.id, d.label, e.target.value)}
-            />
-          </div>
-        ))}
+      <div onClick={() => console.log(data)} className='proceed-btn'>
+        <ArrowIcon />
       </div>
-      <div onClick={() => console.log(data)}>click</div>
     </div>
   );
 }

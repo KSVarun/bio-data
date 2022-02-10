@@ -3,12 +3,21 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  flex-direction: column;
   height: 100vh;
+}
+
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .img-container {
   height: 20rem;
   width: 15rem;
+  border: 2px solid black;
 }
 
 .upload-btn-container {
@@ -20,13 +29,46 @@
 }
 
 .editable-field-container {
-  width: 20rem;
-  gap: 1rem;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   height: 60vh;
   overflow: auto;
 }
 
+.left-container {
+  display: flex;
+}
+
+.separator {
+  margin: 0px 20px;
+}
+
+.right-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0px 20px;
+}
+
 .editable-field {
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-new-btn {
+  width: fit-content;
+  align-self: center;
+  padding: 0.2rem 0.4rem;
+  background: var(--bd-theme-gray);
+  border: unset;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.proceed-btn {
+  transform: rotate(270deg);
+  cursor: pointer;
 }
