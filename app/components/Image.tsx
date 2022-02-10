@@ -1,12 +1,15 @@
 import type { FC } from 'react';
+import { CancelIcon } from '~/assets/CancelIcon';
 import React from 'react';
 
 interface IImage {
   file: File | null;
   handleFileSelect: (file: File) => void;
+  handleFileDeselect: () => void;
 }
 
-export const Image: FC<IImage> = ({ file, handleFileSelect }) => {
+export const Image: FC<IImage> = (props) => {
+  const { file, handleFileSelect, handleFileDeselect } = props;
   function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files && e.target.files.item(0);
     if (file) {
@@ -16,11 +19,16 @@ export const Image: FC<IImage> = ({ file, handleFileSelect }) => {
 
   function renderUploadedImg(file: File) {
     return (
-      <img
-        src={URL.createObjectURL(file)}
-        alt=''
-        style={{ width: 'inherit', height: 'inherit' }}
-      />
+      <>
+        <img
+          src={URL.createObjectURL(file)}
+          alt=''
+          style={{ width: 'inherit', height: 'inherit' }}
+        />
+        <div className='cancel-btn' onClick={() => handleFileDeselect}>
+          <CancelIcon />
+        </div>
+      </>
     );
   }
 

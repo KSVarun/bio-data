@@ -14,10 +14,20 @@
   gap: 2rem;
 }
 
+.cancel-btn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: var(--bd-theme-gray);
+  display: flex;
+  border-radius: 50%;
+}
+
 .img-container {
   height: 20rem;
   width: 15rem;
   border: 2px solid black;
+  position: relative;
 }
 
 .upload-btn-container {
@@ -30,7 +40,7 @@
 
 .editable-field-container {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-direction: column;
   height: 60vh;
   overflow: auto;

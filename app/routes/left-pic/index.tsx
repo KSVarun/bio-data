@@ -4,6 +4,7 @@ import { Image } from '~/components/Image';
 import leftPicStyles from '../../styles/left-pic.css';
 import { v4 as uuidv4 } from 'uuid';
 import { ArrowIcon } from '~/assets/ArrowIcon';
+import { CancelIcon } from '~/assets/CancelIcon';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: leftPicStyles }];
@@ -37,6 +38,10 @@ export default function LeftPic() {
     setFile(file);
   }
 
+  function handleFileDeselect() {
+    setFile(null);
+  }
+
   function handleUpdateData(id: string, label: string, value: string) {
     const updatedData = [...data];
     const idx = data.findIndex((d) => d.id === id);
@@ -67,7 +72,11 @@ export default function LeftPic() {
     <div className='container'>
       <div className='top-container'>
         <div className='img-container'>
-          <Image file={file} handleFileSelect={handleFileSelect} />
+          <Image
+            file={file}
+            handleFileSelect={handleFileSelect}
+            handleFileDeselect={handleFileDeselect}
+          />
         </div>
         <div className='editable-field-container'>
           {data.map((d) => (
@@ -93,7 +102,7 @@ export default function LeftPic() {
                 className='right-container'
                 onClick={() => handleRemoveField(d.id)}
               >
-                x
+                <CancelIcon />
               </div>
             </div>
           ))}
