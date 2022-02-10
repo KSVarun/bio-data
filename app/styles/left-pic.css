@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  height: 100vh;
+}
+
+.img-container {
+  height: 20rem;
+  width: 15rem;
+}
+
+.upload-btn-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editable-field-container {
+  width: 20rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow: auto;
+}
+
+.editable-field {
+}
