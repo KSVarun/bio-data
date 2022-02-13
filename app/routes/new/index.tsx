@@ -1,56 +1,71 @@
 import { useState } from 'react';
-import type { LinksFunction } from 'remix';
+import { LinksFunction, useLocation } from 'remix';
 import { Image } from '~/components/Image';
-import leftPicStyles from '../../styles/left-pic.css';
+import newStyles from '../../styles/new.css';
 import { v4 as uuidv4 } from 'uuid';
 import { ArrowIcon } from '~/assets/ArrowIcon';
 import { CancelIcon } from '~/assets/CancelIcon';
 import { BioData } from '~/components/BioData';
 import clsx from 'clsx';
+import { Layouts } from '..';
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: leftPicStyles }];
+  return [{ rel: 'stylesheet', href: newStyles }];
 };
 
 const INITAL_FIELDS: IField[] = [
   {
     id: uuidv4(),
     label: 'Name',
-    value: 'Manushree MR',
+    value: '',
   },
   {
     id: uuidv4(),
     label: 'Qualification',
-    value: 'BE (Information Science and Engineering)',
+    value: '',
   },
-  { id: uuidv4(), label: 'Working at', value: 'Alstom Transport, Bengaluru' },
+  { id: uuidv4(), label: 'Working at', value: '' },
   {
     id: uuidv4(),
     label: 'Date of birth',
-    value: 'October 25th, 1997 11:22 PM, Saturday',
+    value: '',
   },
-  { id: uuidv4(), label: 'Horoscope', value: 'Simha rashi, Magha nakshatra' },
-  { id: uuidv4(), label: 'Height', value: "5'" },
-  { id: uuidv4(), label: 'Caste', value: 'Veershaiva Lingayath' },
+  { id: uuidv4(), label: 'Horoscope', value: '' },
+  { id: uuidv4(), label: 'Height', value: '' },
+  { id: uuidv4(), label: 'Caste', value: '' },
   {
     id: uuidv4(),
     label: 'Father',
-    value: 'Raveesh MR (BA, B.ED) Farmer & Businessman',
+    value: '',
   },
-  { id: uuidv4(), label: 'Mother', value: 'Yashoda CT Home Maker' },
+  { id: uuidv4(), label: 'Mother', value: '' },
   { id: uuidv4(), label: 'Siblings', value: '' },
-  { id: uuidv4(), label: 'Contact', value: '9980001700' },
+  { id: uuidv4(), label: 'Contact', value: '' },
   {
     id: uuidv4(),
     label: 'Residential address',
-    value: 'Muganahunase, Chelur post Gubbi taluk, Tumakuru Karnataka',
+    value: '',
   },
 ];
+
+function useGetSeachParams(queryParams: string[]) {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const value: Record<string, string> = {};
+  queryParams.forEach((qp) => {
+    let val = params.get(qp);
+    if (params.has(qp) && val) {
+      value[`${qp}`] = val;
+    }
+  });
+  return value;
+}
 
 export default function LeftPic() {
   const [file, setFile] = useState<File | null>(null);
   const [data, setData] = useState(INITAL_FIELDS);
   const [editing, setEditing] = useState(true);
+  const queryParams = useGetSeachParams(['orientation']);
 
   function handleFileSelect(file: File) {
     setFile(file);
@@ -90,7 +105,13 @@ export default function LeftPic() {
     return (
       <div className='container'>
         <div style={{ fontSize: 30 }}>BIODATA</div>
-        <div className='top-container'>
+        <div
+          className={clsx(
+            'top-container',
+            queryParams.orientation === Layouts.RIGHT_PIC &&
+              'right-pic-container'
+          )}
+        >
           <div className='img-container'>
             <Image
               file={file}

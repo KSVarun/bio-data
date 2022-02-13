@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { ArrowIcon } from '~/assets/ArrowIcon';
-import { IField } from '~/routes/left-pic';
+import { IField } from '~/routes/new';
 import { Image } from './Image';
 
 export const BioData: FC<IBioDataProps> = (props) => {

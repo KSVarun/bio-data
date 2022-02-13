@@ -1,4 +1,4 @@
-import { Link } from 'remix';
+import { Link, useNavigate } from 'remix';
 import type { LinksFunction } from 'remix';
 import indexStyles from '../styles/index.css';
 import { useState } from 'react';
@@ -10,16 +10,20 @@ export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: indexStyles }];
 };
 
-enum Layouts {
+export enum Layouts {
   LEFT_PIC = 'left-pic',
   RIGHT_PIC = 'right-pic',
 }
 
 export default function Index() {
   const [selectedLayout, setSelectedLayout] = useState('');
-
+  const navigate = useNavigate();
   function updateSelected(layout: string) {
     setSelectedLayout(layout);
+  }
+
+  function handleNew() {
+    navigate({ pathname: '/new', search: `orientation=${selectedLayout}` });
   }
 
   return (
@@ -51,9 +55,9 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <Link className='next-btn' to={selectedLayout}>
+      <div className='next-btn' onClick={handleNew}>
         <ArrowIcon className={clsx(selectedLayout ? 'active' : 'in-active')} />
-      </Link>
+      </div>
     </div>
   );
 }

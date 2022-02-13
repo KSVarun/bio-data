@@ -14,6 +14,10 @@
   gap: 2rem;
 }
 
+.right-pic-container {
+  flex-direction: row-reverse;
+}
+
 .cancel-btn {
   position: absolute;
   top: -12px;
