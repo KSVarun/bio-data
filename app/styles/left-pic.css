@@ -28,6 +28,7 @@
   width: 18rem;
   border: 2px solid black;
   position: relative;
+  align-self: flex-start;
 }
 
 .upload-btn-container {
@@ -93,14 +94,18 @@
   transform: rotate(90deg);
   cursor: pointer;
   margin-top: 30px;
+  position: absolute;
+  bottom: 0px;
 }
 
 .label {
-  width: 23%;
+  width: 49%;
 }
 
 .value {
-  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+  width: 75%;
 }
 
 .value-field {
@@ -110,6 +115,6 @@
 
 .field-container {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
 }

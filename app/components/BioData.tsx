@@ -11,17 +11,15 @@ export const BioData: FC<IBioDataProps> = (props) => {
         <div className='img-container'>
           <Image file={props.img} />
         </div>
-        <table className='field-container'>
-          <tbody>
-            {props.fields.map((d) => (
-              <tr className='value-field' key={d.id}>
-                <td className='label'>{d.label}</td>
-                <td className='separator'>:</td>
-                <td className='value'>{d.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className='field-container'>
+          {props.fields.map((d) => (
+            <div className='value-field' key={d.id}>
+              <div className='label'>{d.label}</div>
+              <div className='separator'>:</div>
+              <div className='value'>{d.value}</div>
+            </div>
+          ))}
+        </div>
       </div>
       <div onClick={() => props.handleEdit(true)} className='edit-btn'>
         <ArrowIcon />
