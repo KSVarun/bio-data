@@ -4,15 +4,15 @@ import React from 'react';
 
 interface IImage {
   file: File | null;
-  handleFileSelect: (file: File) => void;
-  handleFileDeselect: () => void;
+  handleFileSelect?: (file: File) => void;
+  handleFileDeselect?: () => void;
 }
 
 export const Image: FC<IImage> = (props) => {
   const { file, handleFileSelect, handleFileDeselect } = props;
   function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files && e.target.files.item(0);
-    if (file) {
+    if (file && handleFileSelect) {
       handleFileSelect(file);
     }
   }
@@ -25,9 +25,11 @@ export const Image: FC<IImage> = (props) => {
           alt=''
           style={{ width: 'inherit', height: 'inherit' }}
         />
-        <div className='cancel-btn' onClick={() => handleFileDeselect}>
-          <CancelIcon />
-        </div>
+        {handleFileDeselect && (
+          <div className='cancel-btn' onClick={() => handleFileDeselect}>
+            <CancelIcon />
+          </div>
+        )}
       </>
     );
   }
